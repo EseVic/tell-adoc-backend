@@ -1,9 +1,9 @@
 module.exports = (sequelize, dataType) => {
     const doctor = sequelize.define('doctor', {
-      // doctorId: {
-      //   type: dataType.STRING,
-      //   allowNull: false,
-      // },  
+      doctorId: {
+        type: dataType.STRING,
+        allowNull: true,
+      },  
       currentAddress: {
         type: dataType.STRING,
         allowNull: false,

@@ -15,6 +15,10 @@ const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
 const { db } = require('./models');
 const { agent } = require('supertest');
+// const crypto = require('crypto');
+// let randomBytes = crypto.randomBytes(4).toString('hex');
+// console.log(randomBytes);
+
 
 const app = express();
 
@@ -70,7 +74,7 @@ app.use(errorHandler);
 app.use('/middleware', agent)
 
 // intit DB
-db.sequelize.sync().catch((err) => {
+db.sequelize.sync({force: true}).catch((err) => {
 
   console.log(err);
 });

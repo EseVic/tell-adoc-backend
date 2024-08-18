@@ -3,7 +3,10 @@ const bcrypt = require('bcryptjs');
 const generator = require('generate-password');
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
+const randn = require('randn');
 const { authService, userService, tokenService, emailService } = require('../services');
+
+console.log(randn(6));
 
 const register = catchAsync(async (req, res) => {
   const type = req.query.type;
@@ -70,7 +73,7 @@ const register = catchAsync(async (req, res) => {
             db.users
               .create(user)
               .then(async (data1) => {
-                await db.doctor.create({ ...user, userId: data1.id });
+                await db.doctor.create({ ...user, userId: data1.id, doctorId: `DOC${(randn(6))}` });
                 const to = [data1.email.toString()];
                 const subject = 'Verify your account';
                 const text = `Dear user,
@@ -169,7 +172,7 @@ const register = catchAsync(async (req, res) => {
             db.users
               .create(patientData)
               .then(async (data1) => {
-                await db.patient.create({ ...patientData, patientDataId: data1.id });
+                await db.patient.create({ ...patientData, patientDataId: data1.id, patientId: `PAT${(randn(6))}`  });
                 const to = [data1.email.toString()];
                 const subject = 'Verify your account';
                 const text = `Dear user,
