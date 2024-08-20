@@ -162,6 +162,7 @@ const register = catchAsync(async (req, res) => {
             //   user.password = bcrypt.hashSync(user.doctor, 10);
             // }
 
+
             //token verification
             patientData.userType = 'patient';
             verifyToken = generator.generate({
@@ -371,11 +372,11 @@ const login = catchAsync(async (req, res) => {
   const type = req.query.type;
 
   switch (type) {
-    case 'company':
+    case 'doctor':
       try {
         const user = await db.users.findOne({
           where: { email: req.body.email },
-          include: [{ model: db.company, as: 'companyProfile' }],
+          include: [{ model: db.doctor, as: 'doctor' }],
         });
         // if record doesn't exist
         if (!user) {
@@ -410,7 +411,7 @@ const login = catchAsync(async (req, res) => {
           userId: user.id,
           userType: user.userType,
         };
-        const tokens = await tokenService.generateAuthTokens(user.companyProfile.id);
+        const tokens = await tokenService.generateAuthTokens(user.doctor.id);
         res.status(200).send({
           status: true,
           data: { user, tokens },
@@ -425,11 +426,11 @@ const login = catchAsync(async (req, res) => {
       }
 
       break;
-    case 'agent':
+    case 'patient':
       await db.users
         .findOne({
           where: { email: req.body.email },
-          include: [{ model: db.agent, as: 'agent' }],
+          include: [{ model: db.patient, as: 'patient' }],
         })
         .then(async( patientData) => {
           // if record doesn't exist
@@ -457,13 +458,13 @@ const login = catchAsync(async (req, res) => {
           }
 
           let payload = {
-            agentId:  patientData.id,
+            patientId:  patientData.id,
             userType:  patientData.userType,
           };
           delete  patientData.password;
           delete  patientData.verifyToken;
-          console.log( patientData.agent.id)
-          const tokens = await tokenService.generateAuthTokens( patientData.agent.id);
+          console.log( patientData.patient.id)
+          const tokens = await tokenService.generateAuthTokens( patientData.patient.id);
           console.log(tokens)
           res.status(200).send({
             status: true,
