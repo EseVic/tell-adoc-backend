@@ -32,12 +32,10 @@ db.users = require('./user.model')(sequelizeInstance, Sequelize);
 db.tokens = require('./token.model')(sequelizeInstance, Sequelize);
 db.doctor = require('./doctor.model')(sequelizeInstance, Sequelize);
 db.patient = require('./patient.model')(sequelizeInstance, Sequelize);
-db.doctorCertifications = require('./doctors-certifications.model')(sequelize, Sequelize);
-db.booking = require('./booking')(sequelize, Sequelize);
-db.department = require('./department') (sequelize, Sequelize);
-db.calendar = require('./calendar') (sequelize, Sequelize);
-
-
+db.doctorCertifications = require('./doctors-certifications.model')(sequelizeInstance, Sequelize);
+db.booking = require('./booking')(sequelizeInstance, Sequelize);
+db.department = require('./department') (sequelizeInstance, Sequelize);
+db.calendar = require('./calendar') (sequelizeInstance, Sequelize);
 
 // relationships for models
 
