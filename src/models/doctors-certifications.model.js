@@ -1,7 +1,5 @@
-const validator = require('validator');
-
 module.exports = (sequelize, dataType) => {
-  const doctorCertifications = sequelize.define('doctorCertifications', {
+  const doctorCertifications  = sequelize.define('doctorCertifications', {
     doctorId: {
       type: dataType.INTEGER,
       allowNull: false,

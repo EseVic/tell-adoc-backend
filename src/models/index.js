@@ -32,6 +32,10 @@ db.users = require('./user.model')(sequelizeInstance, Sequelize);
 db.tokens = require('./token.model')(sequelizeInstance, Sequelize);
 db.doctor = require('./doctor.model')(sequelizeInstance, Sequelize);
 db.patient = require('./patient.model')(sequelizeInstance, Sequelize);
+db.doctorCertifications = require('./doctors-certifications.model')(sequelize, Sequelize);
+db.booking = require('./booking')(sequelize, Sequelize);
+db.department = require('./department') (sequelize, Sequelize);
+db.calendar = require('./calendar') (sequelize, Sequelize);
 
 
 
@@ -43,11 +47,27 @@ db.patient.belongsTo(db.users);
 db.users.hasOne(db.doctor)
 db.doctor.belongsTo(db.users);
 
-db.doctor.hasMany(db.patient);
-db.patient.belongsTo(db.doctor)
+// db.doctor.hasMany(db.patient);
+// db.patient.belongsTo(db.doctor)
 
-db.patient.hasMany(db.doctor)
-db.doctor.belongsTo(db.patient)
+// db.patient.hasMany(db.doctor)
+// db.doctor.belongsTo(db.patient)
+
+db.patient.belongsToMany(db.doctor, {through: "patient_doctor"})
+db.doctor.belongsToMany(db.patient, {through: "patient_doctor"})
+
+db.doctorCertifications.hasMany(db.doctor)
+db.doctor.belongsTo(db.users)
+
+db.users.hasMany(db.booking)
+db.booking.belongsTo(db.users)
+
+db.department.hasMany(db.users);
+db.users.belongsTo(db.department);
+
+db.users.hasOne(db.calendar);
+db.calendar.belongsTo(db.users);
+
 
 
 module.exports = {

@@ -3,6 +3,7 @@ const auth = require('../../middlewares/auth');
 const validate = require('../../middlewares/validate');
 const userValidation = require('../../validations/user.validation');
 const userController = require('../../controllers/user.controller');
+const { jwtAuth } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -17,6 +18,42 @@ router
   .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
   .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
 
+  
+  
+  /* Uodate specific patient profile. */
+  router.put(
+    "/update",
+    jwtAuth.generalVerifyToken,
+    usersController.updateProfile
+  );
+  
+  /* Get specific profile. */
+  router.get("/profile", jwtAuth.generalVerifyToken, usersController.getById);
+  
+  /* Get all patients. */
+  router.get(
+    "/all-patients",
+    jwtAuth.generalVerifyToken,
+    usersController.getAllPatients
+  );
+  
+  /* Get all patients. */
+  router.get(
+    "/all-doctors",
+    jwtAuth.generalVerifyToken,
+    usersController.getAllDoctors
+  );
+  
+  /* Get all patients. */
+  router.post(
+    "/add-doctor",
+    jwtAuth.adminVerifyToken,
+    usersController.createDoctor
+  );
+  
+  // /* Get specific patient profile. */
+  // router.delete('/delete-patient', jwtAuth.patientVerifyToken, usersController.deletePatientProfile);
+  
 module.exports = router;
 
 /**

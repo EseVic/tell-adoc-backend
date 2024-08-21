@@ -16,7 +16,7 @@ module.exports = (sequelize, dataType) => {
       },
       specialization:{
         type: dataType.STRING,
-        allowNull: true,
+        allowNull: false,
         trim: true,
       },
       yearsOfExperience: {

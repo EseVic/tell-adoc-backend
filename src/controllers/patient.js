@@ -10,18 +10,18 @@
 
 
 
-// exports.agentController = {
+// exports.patientController = {
 
 
-//  createLeads: (req, res) => {
-//   let agentId = req.params.agentId
-//   const payload = {agentId: agentId, ...req.body}
+//  createPatient: (req, res) => {
+//   let patientId = req.params.patientId
+//   const payload = {patientId: patientId, ...req.body}
 //   db.leads.create(payload)
 //   .then(async (data) => {
 //       res.status(200).send({
 //           data,
 //           status: true,
-//           message: "Leads created successfully!",
+//           message: "Patient created successfully!",
 //         });
 //   })
 //   .catch((err) => {
@@ -32,15 +32,15 @@
 //   });
 // },
 
-//  getAllAgentLeads: (req, res) => {
-//   let agentId = req.params.agentId
+//  getAllPatients: (req, res) => {
+//   let patientId = req.params.agentId
 
-//     db.leads
+//     db.users
 //       .findAndCountAll({
-//         where: {agentId: agentId},
+//         where: {patientId: patientId},
 //         include: [{
-//           model: db.policy,
-//           as: "policy",   
+//           model: db.patient,
+//           as: "patient",   
 //       }],
 
 //       })
@@ -48,7 +48,7 @@
 //         res.status(200).send({
 //           data,
 //           status: true,
-//           message: "all agents leads retrieved successfully!",
+//           message: "all patients retrieved successfully!",
 //         });
 //       })
 //       .catch((err) => {
@@ -59,20 +59,20 @@
 //       });
 //   },
 
-//   getSingleAgentLead: (req, res) => {
+//   getSinglePatient: (req, res) => {
 //     // let agentId = req.params.agentId
-//     let leadId = req.params.leadId
+//     let patientId = req.params.patientId
 
-//     db.leads
+//     db.users
 //       .findOne({
-//         where: {id: leadId},
+//         where: {id: patientId},
 //         include: [{
-//           model: db.policy,
-//           as: "policy",   
+//           model: db.patient,
+//           as: "patient",   
 //       },
 //       {
-//         model: db.agent,
-//         as: "agent",   
+//         model: db.patient,
+//         as: "patient",   
 //     }
 //     ],
 
@@ -81,7 +81,7 @@
 //         res.status(200).send({
 //           data,
 //           status: true,
-//           message: "agent lead retrieved successfully!",
+//           message: "patient retrieved successfully!",
 //         });
 //       })
 //       .catch((err) => {

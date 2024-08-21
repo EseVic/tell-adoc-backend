@@ -2,10 +2,6 @@ const validator = require('validator');
 
 module.exports = (sequelize, dataType) => {
   const user = sequelize.define('user', {
-    // personId:{
-    //   type: dataType.STRING,
-    //   allowNull: true,
-    // },
     firstName: {
       type: dataType.STRING,
       allowNull: false,
