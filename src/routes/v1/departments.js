@@ -1,21 +1,20 @@
 var express = require('express');
 var router = express.Router();
-const {departmentsController} = require("../controllers/departments");
-const { jwtAuth } = require("../middleware/auth");
+const {departmentsController} = require("../../controllers/departments");
 
 /* create new record. */
-router.post('/create', jwtAuth.adminVerifyToken, departmentsController.create);
+router.post('/create', departmentsController.create);
 
 /* GET all department. */
-router.get('/', jwtAuth.adminVerifyToken, departmentsController.getAll);
+router.get('/', departmentsController.getAll);
 
 /* GET each department by Id. */
-router.get('/:id', jwtAuth.staffVerifyToken, departmentsController.getById);
+router.get('/:id',  departmentsController.getById);
 
 /* Update department record by id. */
-router.put('/update/:id', jwtAuth.staffVerifyToken, departmentsController.update);
+router.put('/update/:id',  departmentsController.update);
 
 /* Delete user by id. */
-router.delete('/delete/:id', jwtAuth.adminVerifyToken, departmentsController.delete);
+router.delete('/delete/:id', departmentsController.delete);
 
 module.exports = router;

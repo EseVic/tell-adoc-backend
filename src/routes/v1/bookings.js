@@ -1,19 +1,19 @@
 var express = require("express");
 var router = express.Router();
-const { bookingsController } = require("../controllers/bookings");
-const { jwtAuth } = require("../middleware/auth");
+const { bookingsController } = require('../../controllers/bookings.controller')
+// const { jwtAuth } = require("../middleware/auth");
 
 /* create new record. */
-// router.post("/create", jwtAuth.patientVerifyToken, bookingsController.create);
+// router.post("/create", bookingsController.create);
 
 /* GET users listing. */
-router.get("/getall", jwtAuth.adminVerifyToken, 
+router.get("/getall", 
 bookingsController.getAll);
 
-router.get("/patient", jwtAuth.generalVerifyToken, 
+router.get("/patient", 
 bookingsController.getbyPatientId);
 
-router.get("/doctor", jwtAuth.generalVerifyToken, 
+router.get("/doctor", 
 bookingsController.getbyDoctorId);
 
 
@@ -21,7 +21,6 @@ bookingsController.getbyDoctorId);
 /* GET each booking by Id. */
 router.get(
   "/:id",
-  jwtAuth.generalVerifyToken,
   bookingsController.getByBookingId
 );
 
@@ -29,19 +28,18 @@ router.get(
 
 router.get(
   "/userBookings",
-  jwtAuth.generalVerifyToken,
   bookingsController.getByBookingId
 );
 
 
 /* Update user record by id. */
-router.put("/update/:id", jwtAuth.patientVerifyToken, bookingsController.update);
+router.put("/update/:id", bookingsController.update);
 
 /* Update user record by id. */
-router.post("/create-booking", jwtAuth.patientVerifyToken, bookingsController.createBooking);
+router.post("/create-booking", bookingsController.createBooking);
 
 
 /* Delete user by id. */
-router.delete("/delete/:id", jwtAuth.patientVerifyToken, bookingsController.delete);
+router.delete("/delete/:id", bookingsController.delete);
 
 module.exports = router;

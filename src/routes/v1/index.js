@@ -15,18 +15,18 @@ const defaultRoutes = [
     path: '/auth',
     route: authRoute,
   },
-  {
-    path: '/doctor',
-    route: doctorRoute,
-  },
-  {
-    path: '/patient',
-    route: patientRoute,
-  },
-  {
-    path: '/dash',
-    route: dashboardRoute,
-  },
+  // {
+  //   path: '/doctor',
+  //   route: doctorRoute,
+  // },
+  // {
+  //   path: '/patient',
+  //   route: patientRoute,
+  // },
+  // {
+  //   path: '/dash',
+  //   route: dashboardRoute,
+  // },
   {
     path: '/userBookings',
     route: bookingsRoute,
