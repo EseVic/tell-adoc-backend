@@ -42,6 +42,7 @@ module.exports = (sequelize, dataType) => {
       license:{
         type: dataType.STRING,
         allowNull: false,
+        unique: true,
         trim: true,
       },
     });

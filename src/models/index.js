@@ -34,7 +34,7 @@ db.doctor = require('./doctor.model')(sequelizeInstance, Sequelize);
 db.patient = require('./patient.model')(sequelizeInstance, Sequelize);
 db.doctorCertifications = require('./doctors-certifications.model')(sequelizeInstance, Sequelize);
 db.booking = require('./booking')(sequelizeInstance, Sequelize);
-db.department = require('./department') (sequelizeInstance, Sequelize);
+// db.department = require('./department') (sequelizeInstance, Sequelize);
 db.calendar = require('./calendar') (sequelizeInstance, Sequelize);
 
 // relationships for models
@@ -55,13 +55,13 @@ db.patient.belongsToMany(db.doctor, {through: "patient_doctor"})
 db.doctor.belongsToMany(db.patient, {through: "patient_doctor"})
 
 db.doctorCertifications.hasMany(db.doctor)
-db.doctor.belongsTo(db.users)
+db.doctor.belongsTo(db.doctorCertifications)
 
 db.users.hasMany(db.booking)
 db.booking.belongsTo(db.users)
 
-db.department.hasMany(db.users);
-db.users.belongsTo(db.department);
+// db.department.hasMany(db.users);
+// db.users.belongsTo(db.department);
 
 db.users.hasOne(db.calendar);
 db.calendar.belongsTo(db.users);
