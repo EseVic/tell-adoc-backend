@@ -6,7 +6,7 @@ const catchAsync = require('../utils/catchAsync');
 const randn = require('randn');
 const { authService, userService, tokenService, emailService } = require('../services');
 
-console.log(randn(6));
+// console.log(randn(6));
 
 const register = catchAsync(async (req, res) => {
   const type = req.query.type;

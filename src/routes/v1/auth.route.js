@@ -28,11 +28,12 @@ module.exports = router;
  *   description: Authentication
  */
 
+// Doctor Registration
 /**
  * @swagger
- * /auth/register?type=company:
+ * /auth/register?type=doctor:
  *   post:
- *     summary: Register as company
+ *     summary: Register as doctor
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -41,22 +42,115 @@ module.exports = router;
  *           schema:
  *             type: object
  *             required:
- *               - companyName
- *               - companyAddress
+ *               - firstName
+ *               - lastName
+ *               - dateOfBirth
  *               - license
- *               - teamCapacity
+ *               - gender
  *               - email
  *               - password
- *               - phoneNumer
+ *               - phoneNumber
+ *               - specialization
+ *               - yearsOfExperience
+ *               - currentAddress
+ *               - qualification
+ *               - resume
  *               - role
  *             properties:
- *               companyName:
+ *               firstName:
  *                 type: string
- *               companyAddress:
+ *               lastName:
+ *                 type: string
+ *               dateOfBirth:
  *                 type: string
  *               lincense:
  *                 type: string
- *               teamCapacity:
+ *               gender:
+ *                 type: string
+ *               phoneNumber:
+ *                 type: string
+ *               specialization:
+ *                 type: string
+ *               yearsOfExperience:
+ *                 type: string
+ *               currentAddress:
+ *                 type: string
+ *               qualification:
+ *                 type: string
+ *               resume:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 description: must be unique
+ *               password:
+ *                 type: string
+ *                 format: password
+ *                 minLength: 8
+ *                 description: At least one number and one letter
+ *             example:
+ *               firstName: Doctor
+ *               lastName: Victoria
+ *               dateOfBirth: 12-may-2034
+ *               license: cac3458ht
+ *               gender: female
+ *               email: tell.adoc@gmail.com
+ *               password: Password1@
+ *               phoneNumber: Password1@
+ *               specialization: Family Medicine
+ *               yearsOfExperience: 6
+ *               currentAddress: Abuja
+ *               qualifiaction: mbbs
+ *               resume: mbbsjjjjhhhdhdhdhhd
+*               role: doctor
+ *     responses:
+ *       "201":
+ *         description: Created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 user:
+ *                   $ref: '#/components/schemas/User'
+ *                 tokens:
+ *                   $ref: '#/components/schemas/AuthTokens'
+ *       "400":
+ *         $ref: '#/components/responses/DuplicateEmail'
+ */
+
+// Patient Registration
+/**
+ * @swagger
+ * /auth/register?type=patient:
+ *   post:
+ *     summary: Register as Patient
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - firstName
+ *               - lastName
+ *               - dateOfBirth
+ *               - gender
+ *               - email
+ *               - password
+ *               - phoneNumber
+ *               - role
+ *             properties:
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *               dateOfBirth:
+ *                 type: string
+ *               gender:
  *                 type: string
  *               phoneNumber:
  *                 type: string
@@ -72,14 +166,14 @@ module.exports = router;
  *                 minLength: 8
  *                 description: At least one number and one letter
  *             example:
- *               companyName: insure
- *               companyAddress: Abuja
- *               license: cac3458ht
- *               teamCapacity: 15
- *               email: insure@gmail.com
+ *               firstName: Doctor
+ *               lastName: Victoria
+ *               dateOfBirth: 12-may-2034
+ *               gender: female
+ *               email: tell.adoc@gmail.com
  *               password: Password1@
  *               phoneNumber: Password1@
-*               role: company
+*               role: patient
  *     responses:
  *       "201":
  *         description: Created
@@ -98,7 +192,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /auth/login?type=company:
+ * /auth/login?type=doctor:
  *   post:
  *     summary: Login
  *     tags: [Auth]
@@ -119,7 +213,7 @@ module.exports = router;
  *                 type: string
  *                 format: password
  *             example:
- *               email: fake@example.com
+ *               email: tell.adoc@example.com
  *               password: password1
  *     responses:
  *       "200":
@@ -147,7 +241,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /auth/signin?type=company:
+ * /auth/signin?type=doctor:
  *   post:
  *     summary: Logout
  *     tags: [Auth]
@@ -221,7 +315,7 @@ module.exports = router;
  *                 type: string
  *                 format: email
  *             example:
- *               email: fake@example.com
+ *               email: tell.adoc@example.com
  *     responses:
  *       "204":
  *         description: No content

@@ -15,6 +15,7 @@ const doctorRegister = {
     yearsOfExperience: Joi.string().required(),
     currentAddress: Joi.string().required(),
     qualification: Joi.string().required(),
+    resume: Joi.string().required(),
     role: Joi.string().required().valid('doctor', 'patient'),
   }),
 };

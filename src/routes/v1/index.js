@@ -3,7 +3,7 @@ const authRoute = require('./auth.route');
 const bookingsRoute = require('./bookings');
 const calendarRoute = require('./calendar')
 const departmentsRoute = require('./departments')
-
+const doctorRoute = require('./doctor.route')
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 
@@ -15,10 +15,10 @@ const defaultRoutes = [
     path: '/auth',
     route: authRoute,
   },
-  // {
-  //   path: '/doctor',
-  //   route: doctorRoute,
-  // },
+  {
+    path: '/doctor',
+    route: doctorRoute,
+  },
   // {
   //   path: '/patient',
   //   route: patientRoute,

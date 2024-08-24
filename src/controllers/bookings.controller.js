@@ -13,7 +13,7 @@ exports.bookingsController = {
     let date = req.body.date;
     date = date.split("-")[2];
     let time = req.body.time;
-    let department = req.body.department;
+    let user = req.body.user;
     console.log(date)
 
     req.body.userId = req.userId;
@@ -63,14 +63,15 @@ exports.bookingsController = {
             let selectedDoctor = {};
             for (let i = 0; i < doctorsNameArr.length; i++) {
               if (randomDoctorId == doctorsNameArr[i].id) {
-                (selectedDoctor.fullName = doctorsNameArr[i].name),
+                (selectedDoctor.firstName = doctorsNameArr[i].firstName),
+                (selectedDoctor.lastName = doctorsNameArr[i].lastName),
                   (selectedDoctor.id = doctorsNameArr[i].id),
-                  (selectedDoctor.contact = doctorsNameArr[i].contact)
+                  (selectedDoctor.contactAddress = doctorsNameArr[i].contactAddress)
               }
             }
             console.log(selectedDoctor);
-            req.body.doctorName = selectedDoctor.fullName;
-            req.body.doctorContact = selectedDoctor.contact;
+            req.body.doctorName = selectedDoctor.firstName;
+            req.body.doctorContact = selectedDoctor.contactAddress;
             users
               .findOne({
                 where: {
@@ -78,8 +79,9 @@ exports.bookingsController = {
                 }
               })
               .then((data) => {
-                req.body.patientName = data.fullName;
-                req.body.patientContact = data.phone;
+                req.body.patientFirstName = data.firstName;
+                req.body.patientLastName = data.lastName;
+                req.body.patientContact = data.phoneNumber;
               })
             calendardb
               .findOne({

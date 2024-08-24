@@ -4,16 +4,16 @@ const config = require('../config/config');
 const swaggerDef = {
   openapi: '3.0.0',
   info: {
-    title: 'Insure API documentation',
+    title: 'Tell-adoc API documentation',
     version,
     license: {
       name: 'MIT',
-      url: 'Tiidelab-Fellowship/insure-backend/blob/master/LICENSE',
+      url: 'EseVic/tell-adoc-backend/blob/master/LICENSE',
     },
   },
   servers: [
     {
-      url: `https://insure-8vvy.onrender.com/v1`,
+      url: `https://tell-adoc-backend.onrender.com/v1`,
     },
     {
       url: `http://localhost:3000/v1/`

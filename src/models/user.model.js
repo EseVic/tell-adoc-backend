@@ -56,10 +56,11 @@ module.exports = (sequelize, dataType) => {
       defaultValue: false
     },
     profilePhoto: {
-      type: dataType.STRING(1234)
+      type: dataType.STRING(1234),
+      allowNull: true
     },
     role: {
-      type: dataType.ENUM('doctor', 'patient', 'admin'),
+      type: dataType.ENUM('doctor', 'patient'),
       allowNull: false,
       trim: true,
     },

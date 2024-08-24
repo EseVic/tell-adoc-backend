@@ -1,50 +1,27 @@
-var express = require("express");
-var router = express.Router();
-const { bookingsController } = require('../../controllers/bookings.controller')
-// const { jwtAuth } = require("../middleware/auth");
+const express = require('express');
+const auth = require('../../middlewares/auth');
+const validate = require('../../middlewares/validate');
+const userValidation = require('../../validations/user.validation');
+const userController = require('../../controllers/user.controller');
+const { doctorController } = require('../../controllers/doctor');
 
-/* create new record. */
-// router.post("/create", bookingsController.create);
+const router = express.Router();
 
-/* GET users listing. */
-router.get("/getall", 
-bookingsController.getAll);
-
-router.get("/patient", 
-bookingsController.getbyPatientId);
-
-router.get("/doctor", 
-bookingsController.getbyDoctorId);
-
-
-
-/* GET each booking by Id. */
-router.get(
-  "/:id",
-  bookingsController.getByBookingId
-);
-
-/* GET each booking by userID. */
-
-router.get(
-  "/userBookings",
-  bookingsController.getByBookingId
-);
+// router.post('/doctor/:doctorId', doctorController.createDoctor);
+// router.get('/doctor/:doctorId', doctorController.getOneDoctor);
+// router.get('/doctor', doctorController.getDoctor);
+// // router.get('/singlecompanyagent/:agentId', companyController.getSingleAgentInfo);
+// router.get('/allcompanyleads/:companyId', companyController.getAllLeads);
+// router.get('/singlecompanypolicy/:policyId', companyController.getOneCompanyPolicy);
+// router.put('/updatepolicy/:policyId', companyController.updatePolicy);
+// router.delete('/deletePolicy/:policyId', companyController.deletePolicy);
 
 
-/* Update user record by id. */
-router.put("/update/:id", bookingsController.update);
 
-/* Update user record by id. */
-router.post("/create-booking", bookingsController.createBooking);
+// router.post('/login', authController.signin);
 
-
-/* Delete user by id. */
-router.delete("/delete/:id", bookingsController.delete);
 
 module.exports = router;
-
-
 
   /**
  * @swagger

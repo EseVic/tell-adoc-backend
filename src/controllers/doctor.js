@@ -4,23 +4,23 @@
 // require("dotenv").config();
 // const { emailService } = require('../services');
 
-// const axios = require("axios");
+// // const axios = require("axios");
 // const generator = require("generate-password");
 // const { email } = require("../config/config");
 
 
 
-// exports.companyController = {
+// exports.doctorController = {
 
-//  createPolicy: (req, res) => {
-//     let companyId = req.params.companyId
-//     const payload = {companyProfileId: companyId, ...req.body}
-//     db.policy.create(payload)
+//  createDoctor: (req, res) => {
+//     let doctorId = req.params.doctorId
+//     const payload = {doctorId: doctorId, ...req.body}
+//     db.doctor.create(payload)
 //     .then(async (data) => {
 //         res.status(200).send({
 //             data,
 //             status: true,
-//             message: "Policy created successfully",
+//             message: "doctor created successfully",
 //           });
 //     })
 //     .catch((err) => {
@@ -32,19 +32,19 @@
 //  },
 
 
-//  updatePolicy: (req, res) => {
-//     let policyId = req.params.policyId
+//  updateDoctor: (req, res) => {
+//     let doctorId = req.params.doctorId
 //     const payload = req.body
-//     db.policy.update(payload, {
+//     db.doctor.update(payload, {
 //         where: {
-//           id: policyId,
+//           id: doctorId,
 //         },
 //       })
 //     .then(async (data) => {
 //         res.status(200).send({
 //             data,
 //             status: true,
-//             message: "Policy updated successfully",
+//             message: "doctor updated successfully",
 //           });
 //     })
 //     .catch((err) => {
@@ -55,18 +55,18 @@
 //       });
 //  },
 
-//   deletePolicy: (req, res) => {
-//     let policyId = req.params.policyId
-//     db.policy.destroy({
+//   deleteDoctor: (req, res) => {
+//     let doctorId = req.params.doctorId
+//     db.doctor.destroy({
 //         where: {
-//           id: policyId,
+//           id: doctorId,
 //         },
 //       })
 //     .then(async (data) => {
 //         res.status(200).send({
 //             data,
 //             status: true,
-//             message: "Policy deleted successfully",
+//             message: "doctor deleted successfully",
 //           });
 //     })
 //     .catch((err) => {
@@ -77,19 +77,19 @@
 //       });
 //  },
 
-//  getCompanyPolicies: (req, res) => {
-//     let companyId = req.params.companyId
+//  getDoctor: (req, res) => {
+//     let doctorId = req.params.doctorId
   
-//     db.policy.findAndCountAll({
+//     db.doctor.findAndCountAll({
 //         where: {
-//             companyProfileId: companyId
+//             doctorId: doctorId
 //           },
 //       })
 //       .then((data) => {
 //         res.status(200).send({
 //             data,
 //             status: true,
-//             message: "All Policies retrieved successfully",
+//             message: "All Doctors retrieved successfully",
 //           });
 //     })
 //     .catch((err) => {
@@ -100,22 +100,22 @@
 //       });
 //  },
 
-//  getOneCompanyPolicy: (req, res) => {
+//  getOneDoctor: (req, res) => {
    
-//     let policyId = req.params.policyId
+//     let doctorId = req.params.doctorId
 
   
-//     db.policy.findOne({
+//     db.doctor.findOne({
 //         where: {
-//             // companyProfileId: companyId,
-//             id: policyId
+//             doctorId: doctorId,
+//             // id: doctorId
 //           },
 //       })
 //       .then((data) => {
 //         res.status(200).send({
 //             data,
 //             status: true,
-//             message: "Policy retrived successfully",
+//             message: "Doctor retrived successfully",
 //           });
 //     })
 //     .catch((err) => {
@@ -126,21 +126,21 @@
 //       });
 //  },
 
-//  getAllCompanyAgents: (req, res) => {
-//     let companyId = req.params.companyId
-//     db.agent
+//   getAllDoctorPatient: (req, res) => {
+//     let doctorId = req.params.doctorId
+//     db.patient
 //       .findAndCountAll({
 //         include: [{
-//           model: db.company,
-//           as: "companyProfile",
-//           where: {id: companyId}
+//           model: db.doctor,
+//           as: "doctor",
+//           where: {id: doctorId}
 //       }]
 //       })
 //       .then((data) => {
 //         res.status(200).send({
 //           data,
 //           status: true,
-//           message: "all agents retrieved successfully",
+//           message: "all patient retrieved successfully",
 //         });
 //       })
 //       .catch((err) => {
@@ -151,13 +151,13 @@
 //       });
 //   },
 
-//   getSingleAgentInfo: (req, res) => {
-//     let agentId = req.params.agentId
-//     db.agent
+//   getSinglePatientInfo: (req, res) => {
+//     let patientId = req.params.patientId
+//     db.patient
 //       .findOne({
 //         include: [{
-//           model: db.company,
-//           as: "companyProfile",
+//           model: db.doctor,
+//           as: "doctor",
 //           where: {id: agentId}
 //       }]
 //       })
@@ -165,7 +165,7 @@
 //         res.status(200).send({
 //           data,
 //           status: true,
-//           message: "agent info retrieved successfully",
+//           message: "patient info retrieved successfully",
 //         });
 //       })
 //       .catch((err) => {
@@ -177,19 +177,20 @@
 //   },
 
 
-//   //Records
-//   getAllLeads: (req, res) => {
-//     let companyId = req.params.companyId
+//   //Bookings
+
+//   getAllBookings: (req, res) => {
+//     let doctorId = req.params.doctorId
   
-//       db.leads
+//       db.booking
 //         .findAndCountAll({
 //           include: [{
-//             where: {companyProfileId: companyId},
-//             model: db.agent,
-//             as: "agent",   
+//             where: {doctorId: doctorId},
+//             model: db.patient,
+//             as: "patient",   
 //         },{
-//             model: db.policy,
-//             as: "policy",   
+//             model: db.doctor,
+//             as: "doctor",   
 //         }],
   
 //         })
@@ -197,7 +198,7 @@
 //           res.status(200).send({
 //             data,
 //             status: true,
-//             message: "all agents leads retrieved successfully",
+//             message: "all Doctor's booking retrieved successfully",
 //           });
 //         })
 //         .catch((err) => {

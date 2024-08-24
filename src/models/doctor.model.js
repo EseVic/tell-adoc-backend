@@ -36,7 +36,7 @@ module.exports = (sequelize, dataType) => {
       },
       resume:{
         type: dataType.STRING,
-        allowNull: true,
+        allowNull: false,
         trim: true,
       },
       license:{
