@@ -73,7 +73,7 @@ const register = catchAsync(async (req, res) => {
             db.users
               .create(user)
               .then(async (data1) => {
-                await db.doctor.create({ ...user, userId: data1.id, doctorId: `DOC${(randn(6))}` });
+                await db.doctor.create({ ...user, userId: data1.id, doctorId: `DOC-${(randn(6))}` });
                 const to = [data1.email.toString()];
                 const subject = 'Verify your account';
                 const text = `Dear user,
@@ -173,7 +173,7 @@ const register = catchAsync(async (req, res) => {
             db.users
               .create(patientData)
               .then(async (data1) => {
-                await db.patient.create({ ...patientData, patientDataId: data1.id, patientId: `PAT${(randn(6))}`  });
+                await db.patient.create({ ...patientData, userId: data1.id, patientId: `Ptc-${(randn(6))}`  });
                 const to = [data1.email.toString()];
                 const subject = 'Verify your account';
                 const text = `Dear user,
@@ -256,10 +256,10 @@ const login = catchAsync(async (req, res) => {
         delete user.password;
         delete user.verifyToken;
 
-        let payload = {
-          userId: user.id,
-          userType: user.userType,
-        };
+        // let payload = {
+        //   userId: user.id,
+        //   userType: user.userType,
+        // };
         const tokens = await tokenService.generateAuthTokens(user.doctor.id);
         res.status(200).send({
           status: true,
@@ -284,12 +284,12 @@ const login = catchAsync(async (req, res) => {
         .then(async( patientData) => {
           // if record doesn't exist
           console.log( patientData)
-          if (! patientData) {
+          if (!patientData) {
             return res.status(404).send({
               message: 'Invalid username or password',
             });
           }
-          if (! patientData.isEmailVerified) {
+          if (!patientData.isEmailVerified) {
             return res.status(404).send({
               status: false,
               message: ' verify account first',
@@ -306,14 +306,14 @@ const login = catchAsync(async (req, res) => {
             });
           }
 
-          let payload = {
-            patientId:  patientData.id,
-            userType:  patientData.userType,
-          };
+          // let payload = {
+          //   patientId:  patientData.id,
+          //   userType:  patientData.userType,
+          // };
           delete  patientData.password;
           delete  patientData.verifyToken;
-          console.log( patientData.patient.id)
-          const tokens = await tokenService.generateAuthTokens( patientData.patient.id);
+          // console.log( patientData.patient.id)
+          const tokens = await tokenService.generateAuthTokens( patientData.id);
           console.log(tokens)
           res.status(200).send({
             status: true,

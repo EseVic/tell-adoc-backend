@@ -57,9 +57,9 @@ module.exports = router;
  * @swagger
  * /booking/doctorId:
  *  post:
- *     summary: Create Policies
- *     description: Admin and agent can create policies.
- *     tags: [Policies]
+ *     summary: Create booking
+ *     description: Doctor and Patient can create bookings.
+ *     tags: [Bookings]
  *     
  *     requestBody:
  *       required: true
@@ -68,18 +68,18 @@ module.exports = router;
  *           schema:
  *             type: object
  *             required:
- *               - policyType
+ *               - bookingType
  *               - duration
  *               - amount
  *             properties:
- *               policyType:
+ *               bookingType:
  *                 type: string
  *               duration:
  *                 type: string
  *               amount:
  *                 type: number
  *             example:
- *               policyType: Car Insurance
+ *               bookingsType: Car Insurance
  *               duration: 4yrs
  *               amount: 200000
  *     responses:
@@ -98,22 +98,22 @@ module.exports = router;
  * 
  * 
  *  get:
- *     summary: Get all policies
- *     description: admins and agents can retrieve all policies.
- *     tags: [Policies]
+ *     summary: Get all bookings
+ *     description: patient and patient can retrieve all bookings.
+ *     tags: [bookings]
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: query
- *         name: policy
+ *         name: booking
  *         schema:
  *           type: string
- *         description: policy type
+ *         description: booking type
  *       - in: query
  *         name: duration
  *         schema:
  *           type: string
- *         description: policy duration
+ *         description: booking duration
  *       - in: query
  *         name: amount
  *         schema:
@@ -139,24 +139,24 @@ module.exports = router;
  */
  /**
  * @swagger
- * /policy/{id}:
+ * /bookings/{id}:
  *   get:
- *     summary: Get a policy
- *     description: Only authorized users can fetch policy information.
- *     tags: [Policies]
+ *     summary: Get a booking
+ *     description: Only authorized users can fetch booking information.
+ *     tags: [bookings]
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: query
- *         name: policy
+ *         name: booking
  *         schema:
  *           type: string
- *         description: policy type
+ *         description: booking type
  *       - in: query
  *         name: duration
  *         schema:
  *           type: string
- *         description: policy duration
+ *         description: booking duration
  *       - in: query
  *         name: amount
  *         schema:
@@ -177,22 +177,22 @@ module.exports = router;
  *         $ref: '#/components/responses/NotFound'
  *
  *   patch:
- *     summary: Update a policy
- *     description: Only authorized users can update policy information.
- *     tags: [Policies]
+ *     summary: Update a booking
+ *     description: Only authorized users can update booking information.
+ *     tags: [bookings]
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: query
- *         name: policy
+ *         name: booking
  *         schema:
  *           type: string
- *         description: policy type
+ *         description: booking type
  *       - in: query
  *         name: duration
  *         schema:
  *           type: string
- *         description: policy duration
+ *         description: booking duration
  *       - in: query
  *         name: amount
  *         schema:
@@ -205,14 +205,14 @@ module.exports = router;
  *           schema:
  *             type: object
  *             properties:
- *               policyType:
+ *               bookingType:
  *                 type: string
  *               duration:
  *                 type: string
  *               amount:
  *                 type: number
  *             example:
- *               policyType: Car Insurance
+ *               bookingType: surgeon
  *               duration: 4yrs
  *               amount: 200000
  *     responses:
@@ -232,22 +232,22 @@ module.exports = router;
  *         $ref: '#/components/responses/NotFound'
  *
  *   delete:
- *     summary: Delete a policy
- *     description: Only authorized users can delete policies.
- *     tags: [Policies]
+ *     summary: Delete booking
+ *     description: Only authorized users can delete booking.
+ *     tags: [booking]
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: query
- *         name: policy
+ *         name: booking
  *         schema:
  *           type: string
- *         description: policy type
+ *         description: booking type
  *       - in: query
  *         name: duration
  *         schema:
  *           type: string
- *         description: policy duration
+ *         description: booking duration
  *       - in: query
  *         name: amount
  *         schema:

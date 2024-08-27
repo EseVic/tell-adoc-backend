@@ -102,7 +102,7 @@ module.exports = router;
  *               specialization: Family Medicine
  *               yearsOfExperience: 6
  *               currentAddress: Abuja
- *               qualifiaction: mbbs
+ *               qualification: mbbs
  *               resume: mbbsjjjjhhhdhdhdhhd
 *               role: doctor
  *     responses:
@@ -241,7 +241,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /auth/signin?type=doctor:
+ * /auth/logout?type=doctor:
  *   post:
  *     summary: Logout
  *     tags: [Auth]
