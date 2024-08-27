@@ -325,7 +325,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /auth/reset-password:
+ * /auth/reset-password?token=token:
  *   post:
  *     summary: Reset password
  *     tags: [Auth]
@@ -382,9 +382,10 @@ module.exports = router;
  *         $ref: '#/components/responses/Unauthorized'
  */
 
+
 /**
  * @swagger
- * /auth/verify-email:
+ * /auth/verify?type=patient:
  *   post:
  *     summary: verify email
  *     tags: [Auth]
@@ -393,7 +394,20 @@ module.exports = router;
  *         name: token
  *         required: true
  *         schema:
- *           type: string
+ *           type: object
+ *           required:
+ *             - email
+ *             - token
+ *           properties:
+ *             email:
+ *               type: string
+ *               format: email
+ *             token:
+ *               type: string
+ *               format: token
+ *           example:
+ *             email: fake@example.com
+ *             token: jhrnbystwabxczvsdf
  *         description: The verify email token
  *     responses:
  *       "204":
