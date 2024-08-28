@@ -325,7 +325,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /auth/reset-password?token=token:
+ * /auth/resetpassword?token=token:
  *   post:
  *     summary: Reset password
  *     tags: [Auth]
@@ -351,7 +351,7 @@ module.exports = router;
  *                 minLength: 8
  *                 description: At least one number and one letter
  *             example:
- *               password: password1
+ *               password: newPassword1
  *     responses:
  *       "204":
  *         description: No content
