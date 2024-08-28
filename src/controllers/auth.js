@@ -173,7 +173,7 @@ const register = catchAsync(async (req, res) => {
             db.users
               .create(patientData)
               .then(async (data1) => {
-                await db.patient.create({ ...patientData, userId: data1.id, patientId: `Ptc-${(randn(6))}`  });
+                await db.patient.create({ ...patientData, userId: data1.id, patientId: `PTC-${(randn(6))}`  });
                 const to = [data1.email.toString()];
                 const subject = 'Verify your account';
                 const text = `Dear user,
