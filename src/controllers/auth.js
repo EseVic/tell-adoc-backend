@@ -219,6 +219,7 @@ const register = catchAsync(async (req, res) => {
 
 const login = catchAsync(async (req, res) => {
   const type = req.query.type;
+  // const type = req.body.type;
 
   switch (type) {
     case 'doctor':

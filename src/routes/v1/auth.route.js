@@ -504,7 +504,7 @@ module.exports = router;
  *           type: object
  *           required:
  *             - email
- *             - token
+ *             - verifyToken
  *           properties:
  *             email:
  *               type: string
@@ -513,8 +513,8 @@ module.exports = router;
  *               type: string
  *               format: token
  *           example:
- *             email: fake@example.com
- *             token: jhrnbystwabxczvsdf
+ *             email: tell.adco@example.com
+ *             verifyToken: rTbd
  *         description: The verify email token
  *     responses:
  *       "204":
@@ -546,7 +546,7 @@ module.exports = router;
  *           type: object
  *           required:
  *             - email
- *             - token
+ *             - verifyToken
  *           properties:
  *             email:
  *               type: string
@@ -555,8 +555,8 @@ module.exports = router;
  *               type: string
  *               format: token
  *           example:
- *             email: fake@example.com
- *             token: jhrnbystwabxczvsdf
+ *             email: tell.adoc@example.com
+ *             verifyToken: Htyh
  *         description: The verify email token
  *     responses:
  *       "204":
