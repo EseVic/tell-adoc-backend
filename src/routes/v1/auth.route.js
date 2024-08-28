@@ -98,7 +98,7 @@ module.exports = router;
  *               gender: female
  *               email: tell.adoc@gmail.com
  *               password: Password1@
- *               phoneNumber: Password1@
+ *               phoneNumber: 090856676
  *               specialization: Family Medicine
  *               yearsOfExperience: 6
  *               currentAddress: Abuja
@@ -172,7 +172,7 @@ module.exports = router;
  *               gender: female
  *               email: tell.adoc@gmail.com
  *               password: Password1@
- *               phoneNumber: Password1@
+ *               phoneNumber: 080997678
 *               role: patient
  *     responses:
  *       "201":
