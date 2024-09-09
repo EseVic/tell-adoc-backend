@@ -54,21 +54,13 @@ const sendEmail = async (to, subject, text) => {
  */
 const sendResetPasswordEmail = async (to, token) => {
   const subject = 'Reset password';
-  const resetPasswordUrl =`https://insure-personal-git-alice-home-alice2212.vercel.app/Auth/resetpassword?token=${token}`;
+  const resetPasswordUrl =`https://tell-a-doc.netlify.app/set-password/Auth/resetpassword?token=${token}`;
   const text = `Dear user,
 To reset your password, click on this link: ${resetPasswordUrl}
 If you did not request any password resets, then ignore this email.`;
   await sendEmail(to, subject, text);
 };
 
-const sendAgentRegistrationEmail = async (to, companyName) => {
-  const subject = 'Agent Onboarding';
-  const resetPasswordUrl = `https://insure-personal-git-alice-home-alice2212.vercel.app/auth/agent/registration`;
-  const text = `Dear user,
-@ ${companyName} has requested to you to be an agent,  click on this link: ${resetPasswordUrl} 
-to accept the request and make sure you use your registered email ${to}`;
-  await sendEmail(to, subject, text);
-};
 
 /**
  * Send verification email
@@ -78,7 +70,7 @@ to accept the request and make sure you use your registered email ${to}`;
  */
 const sendVerificationEmail = async (to, token) => {
   const subject = 'Email Verification';
-  const verificationEmailUrl = `https://insure-personal-git-alice-home-alice2212.vercel.app/auth/otp/verify-email?token=${token}`;
+  const verificationEmailUrl = `https://tell-a-doc.netlify.app/set-password/auth/otp/verify-email?token=${token}`;
   const text = `Dear user,
 To verify your email, click on this link: ${verificationEmailUrl}
 If you did not create an account, then ignore this email.`;
@@ -90,5 +82,4 @@ module.exports = {
   sendEmail,
   sendResetPasswordEmail,
   sendVerificationEmail,
-  sendAgentRegistrationEmail,
 };
